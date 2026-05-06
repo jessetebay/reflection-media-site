@@ -1,0 +1,1569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reflection Media — Reflect Your Vision.</title>
+<meta name="description" content="Reflection Media creates strategic video content that helps businesses communicate clearly, train effectively, and convert faster." />
+
+<!-- ============ BODY SANS (Fontshare) ============ -->
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600&display=swap" rel="stylesheet">
+
+<!-- ============ FONTS ============ -->
+<style>
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-Ultralight.otf') format('opentype');
+    font-weight: 200; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-UltralightItalic.otf') format('opentype');
+    font-weight: 200; font-style: italic; font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-Thin.otf') format('opentype');
+    font-weight: 300; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-ThinItalic.otf') format('opentype');
+    font-weight: 300; font-style: italic; font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-Regular.otf') format('opentype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-Italic.otf') format('opentype');
+    font-weight: 400; font-style: italic; font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-Bold.otf') format('opentype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-BoldItalic.otf') format('opentype');
+    font-weight: 700; font-style: italic; font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-Heavy.otf') format('opentype');
+    font-weight: 900; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'PP Editorial Old';
+    src: url('fonts/PPEditorialOld-HeavyItalic.otf') format('opentype');
+    font-weight: 900; font-style: italic; font-display: swap;
+  }
+
+  /* ============ TOKENS ============ */
+  :root {
+    --black: #0A0A0A;
+    --ink:   #111111;
+    --ivory: #F4EFE6;
+    --ivory-2: #EDE5D6;
+    --white: #FFFFFF;
+    --rule:  rgba(255,255,255,0.18);
+    --rule-dark: rgba(10,10,10,0.14);
+    --serif: 'PP Editorial Old', 'Times New Roman', Georgia, serif;
+    --sans:  'General Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    --maxw: 1320px;
+    --pad-x: clamp(20px, 4vw, 56px);
+    --pad-y: clamp(80px, 10vw, 160px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--ivory);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    overflow-x: hidden;
+  }
+  img, video, iframe { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--ivory); color: var(--black); }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px var(--pad-x);
+    color: var(--ivory);
+    background: transparent;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: background .35s ease, color .35s ease, padding .35s ease,
+                backdrop-filter .35s ease, border-color .35s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.is-scrolled {
+    background: rgba(244,239,230,0.92);
+    color: var(--black);
+    padding: 12px var(--pad-x);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom-color: rgba(10,10,10,0.08);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: inherit;
+  }
+  .brand-mark {
+    width: 38px; height: 38px;
+    display: inline-flex;
+    flex-shrink: 0;
+    transition: transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .brand:hover .brand-mark { transform: rotate(-4deg); }
+  .brand-mark svg { width: 100%; height: 100%; display: block; }
+  /* default: outlined R that adapts via currentColor (over hero) */
+  .brand-mark .mark-bg { fill: currentColor; opacity: 0; transition: opacity .35s ease; }
+  .brand-mark .mark-border { stroke: currentColor; stroke-width: 2; fill: none; opacity: 1; transition: opacity .35s ease; }
+  .brand-mark .mark-glyph { fill: currentColor; }
+  /* scrolled: solid square — fill on, border off, glyph inverts to ivory */
+  .nav.is-scrolled .brand-mark .mark-bg { opacity: 1; }
+  .nav.is-scrolled .brand-mark .mark-border { opacity: 0; }
+  .nav.is-scrolled .brand-mark .mark-glyph { fill: var(--ivory); }
+
+  .nav .wordmark {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1;
+  }
+  .nav .wordmark em { font-style: italic; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { opacity: 0.85; transition: opacity .25s ease; color: inherit; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta {
+    border: 1px solid currentColor;
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: background .25s ease, color .25s ease;
+    color: inherit;
+  }
+  .nav.is-scrolled .nav-cta:hover { background: var(--black); color: var(--ivory); }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .nav .wordmark { font-size: 18px; }
+    .brand-mark { width: 32px; height: 32px; }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    background: var(--black);
+    color: var(--ivory);
+    overflow: hidden;
+    padding: 0 var(--pad-x) 80px;
+  }
+  .hero-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    /* Cinematic placeholder visible immediately while Vimeo loads */
+    background:
+      radial-gradient(ellipse at 50% 35%, #1a1a1a 0%, #0a0a0a 60%),
+      var(--black);
+  }
+  /* Subtle breathing animation on the placeholder so it never feels frozen */
+  .hero-video::before {
+    content: "";
+    position: absolute; inset: -10%;
+    background:
+      radial-gradient(ellipse at 30% 30%, rgba(244,239,230,0.06) 0%, transparent 45%),
+      radial-gradient(ellipse at 70% 70%, rgba(244,239,230,0.04) 0%, transparent 50%);
+    animation: heroPulse 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes heroPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.04); }
+  }
+  .hero-video iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    /* always at least viewport-sized; aspect is 16:9 — overscale to crop any built-in letterbox */
+    width: max(100vw, 177.78vh);
+    height: max(100vh, 56.25vw);
+    transform: translate(-50%, -50%) scale(1.18);
+    transform-origin: center center;
+    border: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  .hero-video.is-ready iframe { opacity: 1; }
+  .hero-video.is-ready::before { opacity: 0; transition: opacity 1.2s ease; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video::before { animation: none; }
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 35%, rgba(10,10,10,0.85) 100%);
+  }
+  .hero-grain {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    width: 100%;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+  }
+  .eyebrow::before {
+    content: ""; width: 36px; height: 1px; background: currentColor; display: inline-block;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 9.4vw, 156px);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    max-width: 18ch;
+  }
+  .hero h1 em { font-style: italic; font-weight: 300; }
+  .hero p.sub {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: clamp(16px, 1.2vw, 19px);
+    line-height: 1.6;
+    max-width: 54ch;
+    margin: 0 0 36px;
+    opacity: 0.92;
+    letter-spacing: -0.005em;
+  }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    --bg: var(--ivory);
+    --fg: var(--black);
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--bg); color: var(--fg);
+    padding: 18px 26px;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border: 1px solid var(--bg);
+    transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+    will-change: transform;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.ghost {
+    --bg: transparent;
+    --fg: var(--ivory);
+    border-color: rgba(244,239,230,0.55);
+  }
+  .btn.ghost:hover { border-color: var(--ivory); background: rgba(244,239,230,0.06); }
+  .btn.dark {
+    --bg: var(--black);
+    --fg: var(--ivory);
+    border-color: var(--black);
+  }
+  .btn.dark.ghost {
+    --bg: transparent;
+    --fg: var(--black);
+    border-color: rgba(10,10,10,0.4);
+  }
+  .btn.dark.ghost:hover { border-color: var(--black); background: rgba(10,10,10,0.05); }
+  .btn .arrow {
+    display: inline-block;
+    transition: transform .25s ease;
+  }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  .hero-meta {
+    position: absolute;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    bottom: 28px;
+    z-index: 2;
+    display: flex; justify-content: space-between; align-items: end;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  @media (max-width: 720px) {
+    .hero-meta { display: none; }
+  }
+
+  /* ============ MARQUEE / TRUST ============ */
+  .marquee {
+    background: var(--black);
+    color: var(--ivory);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 80px;
+    padding: 22px 0;
+    white-space: nowrap;
+    animation: scroll 38s linear infinite;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 2.4vw, 32px);
+    letter-spacing: -0.01em;
+  }
+  .marquee-track span { display: inline-flex; align-items: center; gap: 80px; }
+  .marquee-track span::after {
+    content: "✦";
+    font-style: normal;
+    opacity: 0.6;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ============ SECTION SHELL ============ */
+  section { position: relative; }
+  .section-pad {
+    padding: var(--pad-y) var(--pad-x);
+  }
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(28px, 5vw, 96px);
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: inherit;
+    opacity: 0.7;
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+  }
+  .label::before {
+    content: ""; width: 28px; height: 1px; background: currentColor; display: inline-block; opacity: 0.7;
+  }
+  .h-display {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(40px, 6.4vw, 96px);
+    line-height: 0.96;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .h-display em { font-style: italic; font-weight: 300; }
+  .h-section {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(36px, 5.4vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0 0 36px;
+  }
+  .h-section em { font-style: italic; font-weight: 300; }
+  .lead {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: clamp(16px, 1.15vw, 18px);
+    line-height: 1.65;
+    max-width: 56ch;
+    color: inherit;
+    opacity: 0.92;
+  }
+  .lead + .lead { margin-top: 1em; }
+
+  /* ============ ABOUT ============ */
+  .about {
+    background: var(--ivory);
+    color: var(--black);
+  }
+  .about .h-display { max-width: 16ch; }
+  .about-stats {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    border-top: 1px solid var(--rule-dark);
+    padding-top: 36px;
+  }
+  .about-stats .stat .num {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(40px, 5.2vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .about-stats .stat .lbl {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-top: 10px;
+    display: block;
+  }
+  @media (max-width: 720px) {
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ============ SERVICES ============ */
+  .services {
+    background: var(--black);
+    color: var(--ivory);
+  }
+  .services-head {
+    display: flex; align-items: end; justify-content: space-between;
+    gap: 40px; flex-wrap: wrap;
+    margin-bottom: 64px;
+  }
+  .services-head .h-section { margin: 0; max-width: 18ch; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: clamp(14px, 1.5vw, 22px);
+    margin-top: 32px;
+  }
+  /* Row 1 — three equal columns */
+  .service:nth-child(1),
+  .service:nth-child(2),
+  .service:nth-child(3) { grid-column: span 2; }
+  /* Row 2 — two wider columns */
+  .service:nth-child(4),
+  .service:nth-child(5) { grid-column: span 3; }
+  .service {
+    background: var(--ivory);
+    color: var(--black);
+    padding: clamp(22px, 2.4vw, 32px) clamp(24px, 2.8vw, 38px);
+    border-radius: 6px;
+    border: 1px solid rgba(244,239,230,0.06);
+    position: relative;
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.6), 0 2px 8px -4px rgba(0,0,0,0.3);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+    will-change: transform;
+    display: flex;
+    flex-direction: column;
+  }
+  .service:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 56px -22px rgba(0,0,0,0.75), 0 4px 12px -4px rgba(0,0,0,0.4);
+  }
+
+  .service .num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.26em;
+    opacity: 0.55;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .service .num::after {
+    content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.25;
+  }
+  .service h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 10px;
+    max-width: 22ch;
+  }
+  .service h3 em { font-style: italic; font-weight: 300; }
+  .service .tag {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(15px, 1.15vw, 17px);
+    line-height: 1.35;
+    opacity: 0.85;
+    margin: 0 0 8px;
+    max-width: 36ch;
+  }
+  .service p {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 46ch;
+    opacity: 0.62;
+  }
+  @media (max-width: 1000px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .service:nth-child(1),
+    .service:nth-child(2),
+    .service:nth-child(3),
+    .service:nth-child(4),
+    .service:nth-child(5) { grid-column: span 1; }
+    .service:nth-child(5) { grid-column: span 2; }
+  }
+  @media (max-width: 640px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service:nth-child(5) { grid-column: span 1; }
+  }
+
+  /* ============ PORTFOLIO ============ */
+  .work {
+    background: var(--ivory);
+    color: var(--black);
+    padding: var(--pad-y) var(--pad-x);
+  }
+  .work-head {
+    display: flex; align-items: end; justify-content: space-between;
+    gap: 40px; flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+  .work-head .h-section { margin: 0; max-width: 18ch; }
+  .work-grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 5vw, 80px);
+  }
+  .work-item {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    width: 100%;
+  }
+  .work-item .ratio {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--black);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .work-item iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+  .work-item .meta {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 4px 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--black);
+    opacity: 0.85;
+  }
+  .work-item .meta a { text-decoration: underline; text-underline-offset: 4px; }
+  .work-item .meta a:hover { opacity: 0.7; }
+
+  /* ============ PROCESS ============ */
+  .process {
+    background: var(--black);
+    color: var(--ivory);
+  }
+  .process-rows {
+    border-top: 1px solid var(--rule);
+    margin-top: 48px;
+  }
+  .process-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 1.5fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+    transition: padding .3s ease;
+  }
+  .process-row:hover { padding-left: 12px; }
+  .process-row .num {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1;
+    opacity: 0.75;
+    font-style: italic;
+  }
+  .process-row h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(28px, 3.4vw, 48px);
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .process-row p {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.78;
+    max-width: 52ch;
+  }
+  @media (max-width: 820px) {
+    .process-row { grid-template-columns: 60px 1fr; gap: 16px; }
+    .process-row p { grid-column: 2; }
+  }
+
+  /* ============ DIFFERENTIATORS — circle medallions ============ */
+  .differ {
+    background: var(--ivory);
+    color: var(--black);
+  }
+  .differ-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(40px, 5vw, 80px);
+    margin-top: clamp(56px, 7vw, 96px);
+    justify-items: center;
+    place-items: center;
+  }
+  .diff-card {
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1px solid rgba(10,10,10,0.18);
+    background: var(--ivory);
+    padding: clamp(36px, 5vw, 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: transform .5s cubic-bezier(.2,.8,.2,1),
+                background .5s ease,
+                color .5s ease,
+                border-color .5s ease,
+                box-shadow .5s ease;
+    will-change: transform;
+  }
+  .diff-card::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    border: 1px dashed rgba(10,10,10,0.08);
+    pointer-events: none;
+    transition: opacity .4s ease;
+  }
+  .diff-card:hover {
+    background: var(--black);
+    color: var(--ivory);
+    border-color: var(--black);
+    transform: translateY(-6px) scale(1.015);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
+  }
+  .diff-card:hover::before { border-color: rgba(244,239,230,0.18); }
+  .diff-card .num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(48px, 6vw, 88px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: clamp(16px, 1.8vw, 24px);
+    opacity: 0.85;
+    display: block;
+  }
+  .diff-card .num::after { content: ""; display: none; }
+  .diff-card h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.1;
+    margin: 0 0 12px;
+    max-width: 12ch;
+    letter-spacing: -0.015em;
+  }
+  .diff-card h4 em { font-style: italic; font-weight: 300; }
+  .diff-card p {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 24ch;
+    opacity: 0.7;
+  }
+  .diff-card:hover p { opacity: 0.85; }
+  @media (max-width: 820px) {
+    .differ-grid { grid-template-columns: 1fr; }
+    .diff-card { max-width: 360px; }
+  }
+
+  /* ============ MEET JESSE — magazine spread ============ */
+  .meet {
+    background: var(--ivory);
+    color: var(--black);
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid var(--rule-dark);
+  }
+  .meet-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(32px, 5vw, 96px);
+    align-items: stretch;
+  }
+  .meet-photo {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background:
+      radial-gradient(ellipse at 50% 30%, #2a2a2a 0%, #0e0e0e 65%),
+      var(--black);
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .meet-photo img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: contrast(1.02) saturate(0.98);
+    opacity: 0;
+    transition: opacity .6s ease;
+  }
+  .meet-photo img.is-loaded { opacity: 1; }
+  /* Placeholder shown if image fails to load or is missing */
+  .meet-photo .photo-fallback {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--ivory);
+    text-align: center;
+    padding: 32px;
+    opacity: 0.85;
+  }
+  .meet-photo .photo-fallback .ring {
+    width: 96px; height: 96px;
+    border-radius: 50%;
+    border: 1px dashed rgba(244,239,230,0.35);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 32px;
+    opacity: 0.85;
+  }
+  .meet-photo .photo-fallback .lbl {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    max-width: 28ch;
+    line-height: 1.7;
+  }
+  .meet-photo .photo-fallback .file {
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    opacity: 0.55;
+  }
+  .meet-photo img.is-loaded ~ .photo-fallback { display: none; }
+  .meet-photo .badge {
+    position: absolute;
+    bottom: 24px; left: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    background: rgba(10,10,10,0.6);
+    padding: 10px 14px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .meet-text {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 24px 0;
+  }
+  .meet-text h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 112px);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    margin: 0 0 32px;
+    max-width: 12ch;
+  }
+  .meet-text h2 em { font-style: italic; font-weight: 300; }
+  .meet-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 1.8vw, 28px);
+    line-height: 1.35;
+    margin: 0 0 28px;
+    max-width: 30ch;
+    opacity: 0.95;
+  }
+  .meet-bio {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: clamp(15px, 1.1vw, 17px);
+    line-height: 1.65;
+    margin: 0 0 14px;
+    max-width: 50ch;
+    opacity: 0.78;
+  }
+  .meet-credits {
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule-dark);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .meet-credits dt { opacity: 0.5; }
+  .meet-credits dd { margin: 0; opacity: 0.92; }
+  @media (max-width: 900px) {
+    .meet-grid { grid-template-columns: 1fr; }
+    .meet-photo { aspect-ratio: 4 / 5; max-width: 520px; }
+  }
+
+  /* ============ RESULTS — poster-style ============ */
+  .results {
+    background: var(--black);
+    color: var(--ivory);
+    overflow: hidden;
+    position: relative;
+  }
+  .results-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 5vw, 80px);
+    align-items: end;
+    margin-bottom: clamp(56px, 7vw, 96px);
+  }
+  .results-head .h-section { max-width: 14ch; margin: 0; }
+  .results-head .lead { max-width: 44ch; }
+  @media (max-width: 820px) {
+    .results-head { grid-template-columns: 1fr; }
+  }
+  .outcomes {
+    counter-reset: outcome;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .outcomes li {
+    counter-increment: outcome;
+    position: relative;
+    border-bottom: 1px solid var(--rule);
+    padding: clamp(28px, 4vw, 48px) 0;
+    display: grid;
+    grid-template-columns: clamp(60px, 8vw, 110px) 1fr auto;
+    gap: clamp(16px, 3vw, 48px);
+    align-items: center;
+    cursor: default;
+    transition: padding-left .45s cubic-bezier(.2,.8,.2,1), background .45s ease;
+  }
+  .outcomes li:hover {
+    padding-left: clamp(16px, 2.5vw, 36px);
+    background: linear-gradient(90deg, rgba(244,239,230,0.04) 0%, transparent 70%);
+  }
+  .outcomes li::before {
+    content: "0" counter(outcome);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    opacity: 0.5;
+    align-self: center;
+  }
+  .outcomes .phrase {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(36px, 6.5vw, 104px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: var(--ivory);
+  }
+  .outcomes .phrase em {
+    font-style: italic;
+    font-weight: 300;
+  }
+  .outcomes .delta {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 2vw, 30px);
+    line-height: 1;
+    opacity: 0.4;
+    transition: opacity .35s ease, transform .35s ease;
+    white-space: nowrap;
+  }
+  .outcomes li:hover .delta { opacity: 1; transform: translateX(-6px); }
+  @media (max-width: 720px) {
+    .outcomes li { grid-template-columns: 50px 1fr; }
+    .outcomes .delta { display: none; }
+  }
+
+  .results-coda {
+    margin-top: clamp(56px, 8vw, 96px);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(28px, 4.4vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    opacity: 0.95;
+    max-width: 22ch;
+  }
+  .results-coda::before {
+    content: "“";
+    display: block;
+    font-style: normal;
+    font-weight: 400;
+    font-size: clamp(60px, 8vw, 120px);
+    line-height: 0.6;
+    margin-bottom: 12px;
+    opacity: 0.25;
+  }
+  .results-marquee {
+    margin-top: clamp(72px, 9vw, 120px);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    color: var(--ivory);
+  }
+  .results-marquee .marquee-track {
+    color: var(--ivory);
+    opacity: 0.85;
+  }
+
+  /* ============ FINAL CTA ============ */
+  .final {
+    background: var(--ivory);
+    color: var(--black);
+    text-align: center;
+    padding: clamp(120px, 16vw, 220px) var(--pad-x);
+    position: relative;
+  }
+  .final h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(48px, 9vw, 144px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0 auto 36px;
+    max-width: 14ch;
+  }
+  .final h2 em { font-style: italic; font-weight: 300; }
+  .final p {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: clamp(16px, 1.2vw, 19px);
+    line-height: 1.6;
+    max-width: 52ch;
+    margin: 0 auto 44px;
+    opacity: 0.78;
+    letter-spacing: -0.005em;
+  }
+  .final .cta-row { justify-content: center; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--black);
+    color: var(--ivory);
+    padding: 80px var(--pad-x) 32px;
+  }
+  .foot-grid {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .foot-mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+    max-width: 14ch;
+  }
+  .foot-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
+  .foot-col h5 {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin: 0 0 18px;
+  }
+  .foot-col a, .foot-col p {
+    display: block;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.55;
+    margin: 0 0 8px;
+    opacity: 0.85;
+    transition: opacity .25s ease;
+  }
+  .foot-col a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+
+  .foot-bottom {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-top: 24px;
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  @media (max-width: 720px) {
+    .foot-grid { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
+  }
+
+  /* ============ MOTION ============ */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    html { scroll-behavior: auto; }
+    .btn, .work-item, .process-row, .service { transition: none; }
+  }
+
+  /* Reveal-on-scroll */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="siteNav" aria-label="Primary">
+    <a href="#top" class="brand" aria-label="Reflection Media — home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect class="mark-bg" x="2" y="2" width="96" height="96" rx="8" />
+          <rect class="mark-border" x="3" y="3" width="94" height="94" rx="7" />
+          <text class="mark-glyph"
+                x="52" y="74"
+                text-anchor="middle"
+                font-family="PP Editorial Old, Times New Roman, Georgia, serif"
+                font-style="italic"
+                font-weight="400"
+                font-size="86"
+                letter-spacing="-2">R</text>
+        </svg>
+      </span>
+      <span class="wordmark"><em>Reflection</em> Media</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0l6gLzGVscoM7kstjesSZBg75LzFBwXCjKDgVEwJFN16A7efqFNBro5NYcolh-IVgV-rFoZMfj" target="_blank" rel="noopener">Book a call</a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero-video" id="heroVideo" aria-hidden="true">
+      <!-- Looping background video. Fade-in only after Vimeo iframe load so there's no blank wait. -->
+      <iframe
+        src="https://player.vimeo.com/video/1189550658?background=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0&dnt=1"
+        loading="eager"
+        fetchpriority="high"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        onload="document.getElementById('heroVideo').classList.add('is-ready')"
+        title="Reflection Media reel"></iframe>
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <span class="eyebrow">Reflection Media — Est. Studio</span>
+      <h1>
+        Reflect <em>Your</em> Brand.<br/>
+        Amplify <em>Your</em> Message.
+      </h1>
+      <p class="sub">We create strategic video content that helps businesses communicate clearly, train effectively, and convert faster.</p>
+      <div class="cta-row">
+        <a class="btn" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0l6gLzGVscoM7kstjesSZBg75LzFBwXCjKDgVEwJFN16A7efqFNBro5NYcolh-IVgV-rFoZMfj" target="_blank" rel="noopener">
+          Get a Quote <span class="arrow">→</span>
+        </a>
+        <a class="btn ghost" href="#work">View Our Work <span class="arrow">↓</span></a>
+      </div>
+    </div>
+
+    <div class="hero-meta" aria-hidden="true">
+      <span>Reflect Your Vision.</span>
+      <span>Scroll ↓</span>
+    </div>
+  </section>
+
+  <!-- ============ TRUST MARQUEE ============ -->
+  <div class="marquee" aria-label="Positioning statement">
+    <div class="marquee-track">
+      <span>Trusted by growing brands</span>
+      <span>Teams &amp; organizations</span>
+      <span>Content that actually works</span>
+      <span>Not just looks good</span>
+      <span>Trusted by growing brands</span>
+      <span>Teams &amp; organizations</span>
+      <span>Content that actually works</span>
+      <span>Not just looks good</span>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about section-pad" id="about">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <span class="label">About / Approach</span>
+          <h2 class="h-display">Video that <em>works harder</em> for your business.</h2>
+        </div>
+        <div>
+          <p class="lead">At Reflection Media, we don't just shoot videos — we build content systems that solve real business problems.</p>
+          <p class="lead">Whether you're onboarding new employees, explaining a complex product, or building trust with your audience, we create videos designed to deliver clarity, consistency, and results.</p>
+          <p class="lead">We combine cinematic production with strategic thinking, so every piece of content has a purpose — and performs.</p>
+        </div>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat">
+          <div class="num">01</div>
+          <span class="lbl">Strategy First</span>
+        </div>
+        <div class="stat">
+          <div class="num">02</div>
+          <span class="lbl">Cinematic Production</span>
+        </div>
+        <div class="stat">
+          <div class="num">03</div>
+          <span class="lbl">Built for Results</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MEET JESSE ============ -->
+  <section class="meet section-pad" id="team">
+    <div class="container">
+      <div class="meet-grid">
+        <figure class="meet-photo">
+          <img
+            src="images/jesse.jpg"
+            alt="Jesse — videographer, editor, and producer at Reflection Media, on set with a RED cinema camera."
+            loading="lazy"
+            onload="this.classList.add('is-loaded')"
+            onerror="this.style.display='none'" />
+          <div class="photo-fallback" aria-hidden="true">
+            <div class="ring">J</div>
+            <div class="lbl">Headshot landing soon</div>
+            <div class="file">save as: images/jesse.jpg</div>
+          </div>
+          <span class="badge">On Set / Reflection Media</span>
+        </figure>
+
+        <div class="meet-text">
+          <span class="label">Behind the Camera</span>
+          <h2>Meet <em>Jesse.</em></h2>
+          <p class="meet-quote">"A calm, capable set is what turns good footage into great work."</p>
+          <p class="meet-bio">Videographer, editor, and producer with a decade in the A/V industry. Jesse brings the kind of steady, prepared presence that makes shoot days feel effortless — even when the brief evolves mid-take.</p>
+          <p class="meet-bio">Built for the spontaneous reality of interviews, product ads, explainers, and testimonials. He shoots natively in the RED ecosystem and moves fluently across Blackmagic, Sony, and Canon — so the gear bends to the story, never the other way around.</p>
+
+          <dl class="meet-credits">
+            <dt>Role</dt>
+            <dd>DP · Editor · Producer</dd>
+            <dt>Native</dt>
+            <dd>RED Ecosystem</dd>
+            <dt>Fluent</dt>
+            <dd>Blackmagic · Sony · Canon</dd>
+            <dt>Built For</dt>
+            <dd>Interviews · Ads · Explainers · Testimonials</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services section-pad" id="services">
+    <div class="container">
+      <div class="services-head">
+        <span class="label" style="margin-bottom:0;">Services / What We Create</span>
+      </div>
+      <h2 class="h-section">What <em>we</em> create.</h2>
+
+      <div class="services-grid">
+        <article class="service">
+          <span class="num">01 / Internal</span>
+          <h3>Training &amp; <em>Onboarding</em> Videos</h3>
+          <p class="tag">Streamline your internal processes and reduce repeat explanations.</p>
+          <p>We create structured, easy-to-follow training content that saves time and improves retention.</p>
+        </article>
+
+        <article class="service">
+          <span class="num">02 / Trust</span>
+          <h3>Testimonial <em>Videos</em></h3>
+          <p class="tag">Build trust instantly with real customer stories.</p>
+          <p>Authentic, story-driven testimonials that make your brand credible and relatable.</p>
+        </article>
+
+        <article class="service">
+          <span class="num">03 / Clarity</span>
+          <h3>Product &amp; <em>Explainer</em> Videos</h3>
+          <p class="tag">Simplify the complex.</p>
+          <p>We turn your product or service into clear, engaging content your audience actually understands.</p>
+        </article>
+
+        <article class="service">
+          <span class="num">04 / Identity</span>
+          <h3>Brand &amp; <em>Company</em> Stories</h3>
+          <p class="tag">Show people who you are — not just what you do.</p>
+          <p>High-impact storytelling that connects your audience to your mission.</p>
+        </article>
+
+        <article class="service">
+          <span class="num">05 / Reach</span>
+          <h3>Social Media <em>Content</em></h3>
+          <p class="tag">Content designed to perform — not just fill a feed.</p>
+          <p>Short-form videos built for attention, engagement, and conversion.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="work" id="work">
+    <div class="container">
+      <div class="work-head">
+        <span class="label" style="margin-bottom:0;">Selected Work</span>
+        <a class="btn dark ghost" href="#contact">Start a Project <span class="arrow">→</span></a>
+      </div>
+      <h2 class="h-section">Recent <em>work</em>.</h2>
+
+      <div class="work-grid">
+        <!-- 1 -->
+        <figure class="work-item">
+          <div class="ratio">
+            <iframe
+              src="https://player.vimeo.com/video/1189475593?dnt=1&title=0&byline=0&portrait=0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              title="Reflection Media — Selected Work 01"></iframe>
+          </div>
+          <figcaption class="meta">
+            <span>01 / Brand Story</span>
+            <a href="https://vimeo.com/reviews/8780f13b-7aee-4fc6-9942-497fd83aa242/videos/1189475593" target="_blank" rel="noopener">Open in Vimeo ↗</a>
+          </figcaption>
+        </figure>
+
+        <!-- 2 -->
+        <figure class="work-item">
+          <div class="ratio">
+            <iframe
+              src="https://player.vimeo.com/video/1189475388?dnt=1&title=0&byline=0&portrait=0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              title="Reflection Media — Selected Work 02"></iframe>
+          </div>
+          <figcaption class="meta">
+            <span>02 / Testimonial</span>
+            <a href="https://vimeo.com/reviews/8780f13b-7aee-4fc6-9942-497fd83aa242/videos/1189475388" target="_blank" rel="noopener">Open in Vimeo ↗</a>
+          </figcaption>
+        </figure>
+
+        <!-- 3 -->
+        <figure class="work-item">
+          <div class="ratio">
+            <iframe
+              src="https://player.vimeo.com/video/1189477341?dnt=1&title=0&byline=0&portrait=0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              title="Reflection Media — Selected Work 03"></iframe>
+          </div>
+          <figcaption class="meta">
+            <span>03 / Explainer</span>
+            <a href="https://vimeo.com/reviews/8780f13b-7aee-4fc6-9942-497fd83aa242/videos/1189477341" target="_blank" rel="noopener">Open in Vimeo ↗</a>
+          </figcaption>
+        </figure>
+
+        <!-- 4 -->
+        <figure class="work-item">
+          <div class="ratio">
+            <iframe
+              src="https://player.vimeo.com/video/1189475214?dnt=1&title=0&byline=0&portrait=0"
+              allow="autoplay; fullscreen; picture-in-picture"
+              title="Reflection Media — Selected Work 04"></iframe>
+          </div>
+          <figcaption class="meta">
+            <span>04 / Training</span>
+            <a href="https://vimeo.com/reviews/8780f13b-7aee-4fc6-9942-497fd83aa242/videos/1189475214" target="_blank" rel="noopener">Open in Vimeo ↗</a>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="process section-pad" id="process">
+    <div class="container">
+      <span class="label">A Simple, Strategic Process</span>
+      <h2 class="h-section">From <em>brief</em> to broadcast.</h2>
+
+      <div class="process-rows">
+        <div class="process-row">
+          <div class="num">01</div>
+          <h4>Discover</h4>
+          <p>We learn your business, goals, and audience.</p>
+        </div>
+        <div class="process-row">
+          <div class="num">02</div>
+          <h4>Plan</h4>
+          <p>We develop concepts, messaging, and a clear production strategy.</p>
+        </div>
+        <div class="process-row">
+          <div class="num">03</div>
+          <h4>Produce</h4>
+          <p>We handle filming, direction, and execution — start to finish.</p>
+        </div>
+        <div class="process-row">
+          <div class="num">04</div>
+          <h4>Deliver</h4>
+          <p>You get polished, ready-to-use content built for your platforms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIFFERENTIATORS ============ -->
+  <section class="differ section-pad">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <span class="label">Why Reflection Media</span>
+          <h2 class="h-display">Built for <em>business</em>, made to perform.</h2>
+        </div>
+        <div>
+          <p class="lead">We don't measure success by views — we measure it by impact. Every shoot day, every cut, every frame is engineered around a real outcome for your business.</p>
+        </div>
+      </div>
+
+      <div class="differ-grid">
+        <article class="diff-card">
+          <span class="num">01</span>
+          <h4>Strategic <em>First</em></h4>
+          <p>We focus on what the video needs to achieve — not just how it looks.</p>
+        </article>
+        <article class="diff-card">
+          <span class="num">02</span>
+          <h4>Built for <em>Business</em></h4>
+          <p>Designed for real-world applications: sales, training, onboarding, and marketing.</p>
+        </article>
+        <article class="diff-card">
+          <span class="num">03</span>
+          <h4>Efficient <em>Production</em></h4>
+          <p>We maximize shoot days so you get more value from every project.</p>
+        </article>
+        <article class="diff-card">
+          <span class="num">04</span>
+          <h4>Cinematic <em>Quality</em></h4>
+          <p>High-end visuals that elevate your brand and stand out.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS — poster ============ -->
+  <section class="results section-pad">
+    <div class="container">
+      <div class="results-head">
+        <div>
+          <span class="label">Outcomes</span>
+          <h2 class="h-section">Content that <em>drives</em> results.</h2>
+        </div>
+        <p class="lead">Our clients use video to do more than fill a feed — they use it to move the business forward in measurable, repeatable ways.</p>
+      </div>
+
+      <ol class="outcomes">
+        <li>
+          <h3 class="phrase">Reduce <em>training</em> time.</h3>
+          <span class="delta">↓ hours saved</span>
+        </li>
+        <li>
+          <h3 class="phrase">Increase customer <em>trust</em>.</h3>
+          <span class="delta">↑ credibility</span>
+        </li>
+        <li>
+          <h3 class="phrase">Improve <em>conversion</em> rates.</h3>
+          <span class="delta">↑ pipeline</span>
+        </li>
+        <li>
+          <h3 class="phrase">Consistent messaging, <em>everywhere</em>.</h3>
+          <span class="delta">= alignment</span>
+        </li>
+      </ol>
+
+      <p class="results-coda">We don't measure success by views — we measure it by impact.</p>
+    </div>
+
+    <div class="results-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Built for business</span>
+        <span>Made to perform</span>
+        <span>Cinematic, strategic</span>
+        <span>Reflect Your Vision</span>
+        <span>Built for business</span>
+        <span>Made to perform</span>
+        <span>Cinematic, strategic</span>
+        <span>Reflect Your Vision</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final" id="contact">
+    <span class="label" style="justify-content:center;">Let's talk</span>
+    <h2>Let's build something <em>that works.</em></h2>
+    <p>If you're ready to create video content that actually moves your business forward, let's talk.</p>
+    <div class="cta-row">
+      <a class="btn dark" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0l6gLzGVscoM7kstjesSZBg75LzFBwXCjKDgVEwJFN16A7efqFNBro5NYcolh-IVgV-rFoZMfj" target="_blank" rel="noopener">
+        Start a Project <span class="arrow">→</span>
+      </a>
+      <a class="btn dark ghost" href="mailto:info@reflectionmedia.io">
+        Get a Quote <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <p class="foot-mark"><em>Reflection</em><br/>Media.</p>
+        <p class="foot-tag">Reflect Your Vision.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="mailto:info@reflectionmedia.io">info@reflectionmedia.io</a>
+        <a href="tel:+17142575509">+1 (714) 257-5509</a>
+        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0l6gLzGVscoM7kstjesSZBg75LzFBwXCjKDgVEwJFN16A7efqFNBro5NYcolh-IVgV-rFoZMfj" target="_blank" rel="noopener">Book a call ↗</a>
+      </div>
+      <div class="foot-col">
+        <h5>Studio</h5>
+        <p>Reflection Media LLC</p>
+        <p>A God fearing business.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2021 by Reflection Media.</span>
+      <span>Reflect Your Vision.</span>
+    </div>
+  </footer>
+
+  <!-- ============ MOTION SCRIPT ============ -->
+  <script>
+    // Hero video — force reveal after 2.5s as a safety net, in case onload is delayed/blocked
+    setTimeout(() => {
+      const hv = document.getElementById('heroVideo');
+      if (hv) hv.classList.add('is-ready');
+    }, 2500);
+
+    // Nav scroll state — solid-square brand mark + ivory backdrop after the hero
+    (function navScrollState() {
+      const nav = document.getElementById('siteNav');
+      if (!nav) return;
+      const apply = () => {
+        const past = window.scrollY > Math.min(window.innerHeight - 120, 600);
+        nav.classList.toggle('is-scrolled', past);
+      };
+      apply();
+      window.addEventListener('scroll', apply, { passive: true });
+      window.addEventListener('resize', apply);
+    })();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      }
+    }, { threshold: 0.12 });
+    document.querySelectorAll('section .container, .marquee').forEach(el => {
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>
