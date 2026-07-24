@@ -1315,7 +1315,18 @@
     opacity: 0.78;
     letter-spacing: -0.005em;
   }
-  .final .cta-row { justify-content: center; }
+  .final .cta-row {
+    justify-content: center;
+    gap: 18px;
+  }
+  .final .btn {
+    justify-content: center;
+    min-width: 320px;
+    min-height: 66px;
+    padding: 21px 32px;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+  }
   .final .btn.dark {
     --bg: var(--ivory);
     --fg: var(--black);
@@ -1329,6 +1340,19 @@
   .final .btn.dark.ghost:hover {
     border-color: var(--ivory);
     background: rgba(244,239,230,0.06);
+  }
+  @media (max-width: 720px) {
+    .final .cta-row {
+      width: min(100%, 380px);
+      margin: 0 auto;
+    }
+    .final .btn {
+      width: 100%;
+      min-width: 0;
+      min-height: 62px;
+      padding: 19px 22px;
+      font-size: 11px;
+    }
   }
 
   /* ============ FOOTER ============ */
@@ -1847,10 +1871,10 @@
     <p>If you're ready to create video content that actually moves your business forward, let's talk.</p>
     <div class="cta-row">
       <a class="btn dark" href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0l6gLzGVscoM7kstjesSZBg75LzFBwXCjKDgVEwJFN16A7efqFNBro5NYcolh-IVgV-rFoZMfj" target="_blank" rel="noopener">
-        Start a Project <span class="arrow">→</span>
+        Schedule an Intro Call <span class="arrow">→</span>
       </a>
-      <a class="btn dark ghost" href="mailto:info@reflectionmedia.io">
-        Get a Quote <span class="arrow">→</span>
+      <a class="btn dark ghost" href="mailto:info@reflectionmedia.io?subject=Project%20Inquiry">
+        Tell Us About Your Project <span class="arrow">→</span>
       </a>
     </div>
   </section>
